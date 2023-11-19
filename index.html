@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Pyscript SK8 test</title>
+        <!-- Recommended meta tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <!-- PyScript CSS -->
+        <link rel="stylesheet" href="https://pyscript.net/snapshots/2023.09.1.RC2/core.css">
+        <!-- This script tag bootstraps PyScript -->
+        <script type="module" src="https://pyscript.net/snapshots/2023.09.1.RC2/core.js"></script>
+    </head>
+
+    <body>
+
+        <form>
+            <div id="widgets" style="display: none">
+                <h3>SK8 / Pyscript demo</h3>
+                <!-- Buttons to trigger connect/disconnect and to start/stop streaming data-->
+                <button id="connectButton">Connect</button>
+                <button id="disconnectButton" disabled>Disconnect</button>
+                <button id="startNotifications" disabled>Start streaming</button>
+                <button id="stopNotifications" disabled>Stop streaming</button>
+            </div>
+            <div id="loadingMessage"><h3>Please wait, Pyscript is loading...</h3></div>
+        </form>
+        <canvas id="canvas" width="600" height="400" style="background-color: #FFF">
+        </canvas>
+
+        <script type="py" src="sk8.py" config="sk8.json"></script>
+
+        <script type="text/javascript">
+            // pyscript with pyodide emits the "py:ready" event when the interpreter is initialized
+            addEventListener('py:ready', function(event) {
+                document.querySelector("#widgets").style.display = "block";
+                document.querySelector("#loadingMessage").style.display = "none";
+            });
+        </script>
+    </body>
+</html>
